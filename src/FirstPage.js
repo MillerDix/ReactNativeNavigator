@@ -3,17 +3,24 @@ import {
     TouchableOpacity,
     Text,
     View,
+    ListView,
+    Dimensions,
     Alert,
     StyleSheet
 } from 'react-native';
 
 import SecondPage from './SecondPage';
-
+const screen = {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+}
 class FirstPage extends Component {
     constructor(props) {
         super(props);
+        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            UserName: 'MillerD'
+            UserName: 'MillerD',
+            dataSource: ds.cloneWithRows(['第一行', '第二行'])
         }
     }
     // 点击事件
@@ -32,6 +39,10 @@ class FirstPage extends Component {
     render() {
         return (
              <View style={styles.container} >
+                <ListView style={{marginTop: 100, marginBottom: 200, backgroundColor: 'blue'}}
+                    dataSource={this.state.dataSource}
+                    renderRow={(rowData) => <Text style={styles.cell}>{rowData}</Text>}
+                />
                 <Text style={styles.text} onPress={this.clickToJump.bind(this)}>
                 这是第一页，点击跳转
                 </Text>
@@ -45,13 +56,23 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#F5FCFF'
+        backgroundColor: '#F5FCFF',
+        marginBottom: 100
     },
     text: {
         alignItems: 'center',
         fontSize: 25,
         color: 'green',
         justifyContent: 'center'
+    },
+    cell: {
+        fontSize: 20,
+        width: screen.width,
+        height: 44,
+        backgroundColor: 'red',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 1
     }
 });
 
