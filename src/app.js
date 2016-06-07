@@ -6,17 +6,32 @@ import {
     View,
     Text,
     Alert,
+    Image,
     Navigator
 } from 'react-native';
 
 import FirstPage from './FirstPage';
 
 class NavigationTest extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            logo: '1'
+        }
+    }
+    clickLogo() {
+        this.setState({
+            logo: '2'
+        });
+    }
+
     renderNavBar() {
-        const alertMessage = 'WTF';
+        // fuck this
+        var that = this;
+        const alertMessage = 'Right Button Alert';
         const styles = {
             button: {
-                flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green'
+                flex: 1, width: 50, alignItems: 'center', justifyContent: 'center', backgroundColor: 'transparent'
             },
             buttonText: {
                 fontSize: 18, color: '#FFFFFF', fontWeight: '400'
@@ -42,7 +57,7 @@ class NavigationTest extends Component {
                     );
                 } else {
                     return (
-                        <TouchableOpacity style={styles.button} onPress={() => {}} >
+                        <TouchableOpacity style={styles.button} onPress={() => that.clickLogo()} >
                             <Text style={styles.buttonText}>Logo</Text>
                         </TouchableOpacity>
                     );
@@ -57,7 +72,7 @@ class NavigationTest extends Component {
             }
         }
         return (
-            <Navigator.NavigationBar // TODO: test here
+            <Navigator.NavigationBar
                 style={{
                     alignItems: 'center',
                     backgroundColor: '#55ACEE',
@@ -74,24 +89,57 @@ class NavigationTest extends Component {
     }
 
     render() {
-        let defaultName = 'FirstPage';
-        let defaultComponent = FirstPage;
-        return (
-            <Navigator
-                initialRoute = {{ name: defaultName, component: defaultComponent }}
-                // configureScene={(route) => {
-                //     return Navigator.SceneConfigs.VerticalDownSwipeJump;
-                // }}
-                renderScene={(route, navigator) => {
-                    let Component = route.component;
-                    if(route.component) {
-                        return <Component {...route.params} navigator={navigator} />
-                    }
-                }}
-                navigationBar={this.renderNavBar()}
-            />
-        );
+        if(this.state.logo == '1') {
+            let defaultName = 'FirstPage';
+            let defaultComponent = FirstPage;
+            return (
+                <Navigator
+                    initialRoute = {{ name: defaultName, component: defaultComponent }}
+                    // configureScene={(route) => {
+                    //     return Navigator.SceneConfigs.VerticalDownSwipeJump;
+                    // }}
+                    renderScene={(route, navigator) => {
+                        let Component = route.component;
+                        if(route.component) {
+                            return <Component {...route.params} navigator={navigator} />
+                        }
+                    }}
+                    navigationBar={this.renderNavBar()}
+                />
+            );
+        } else {
+            return (
+                <View style={styles.container} >
+                    <Image source={require('../images/motocycle.png')} />
+                    <TouchableOpacity style={styles.button} onPress={() => this.setState({logo: '1'})} >
+                        <Text style={styles.text}>Go Back</Text>
+                    </TouchableOpacity>
+                </View>
+            );
+        }
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 2,
+        borderColor: 'darkcyan',
+        marginTop: 5
+    },
+    text: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'darkcyan',
+        fontSize: 25,
+        fontWeight: '400',
+    }
+});
 
 AppRegistry.registerComponent('NavigationTest', () => NavigationTest);

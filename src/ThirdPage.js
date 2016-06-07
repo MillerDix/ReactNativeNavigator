@@ -37,7 +37,7 @@ class ThirdPage extends Component {
         return (
             <View style={styles.container} >
                 <Text style={styles.text} onPress={this.goBackToFirst.bind(this)}>
-                这是第三页，点击回到首页
+                    Third Page, Click To Go Back
                 </Text>
             </View>
         );
