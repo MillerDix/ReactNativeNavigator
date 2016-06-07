@@ -22,6 +22,7 @@ class FirstPage extends Component {
             UserName: 'MillerD',
             dataSource: ds.cloneWithRows(['第一行', '第二行'])
         }
+        this.nameList = ['ab'];
     }
     // 点击事件
     clickToJump() {
@@ -44,7 +45,8 @@ class FirstPage extends Component {
                     renderRow={(rowData) => <Text style={styles.cell}>{rowData}</Text>}
                 />
                 <Text style={styles.text} onPress={this.clickToJump.bind(this)}>
-                这是第一页，点击跳转
+                  这是{this.state.change ? "第一页" : "第而页"}，点击跳转
+                  {this.nameList[0]}
                 </Text>
             </View>
         );
