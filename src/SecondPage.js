@@ -42,7 +42,7 @@ class SecondPage extends Component {
         return (
             <View style={styles.container} >
                 <Text style={styles.text} onPress={this.clickToJump.bind(this)} >
-                这是第二页，点击跳转
+                    Second Page, Click To Jump
                 </Text>
             </View>
         );

@@ -12,11 +12,17 @@ import {
 import FirstPage from './FirstPage';
 
 class NavigationTest extends Component {
+    clickLogo() {
+        Alert.alert('Logo');
+    }
+
     renderNavBar() {
-        const alertMessage = 'WTF';
+        // fuck this
+        var that = this;
+        const alertMessage = 'Right Button Alert';
         const styles = {
             button: {
-                flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'green'
+                flex: 1, width: 50, alignItems: 'center', justifyContent: 'center', backgroundColor: 'transparent'
             },
             buttonText: {
                 fontSize: 18, color: '#FFFFFF', fontWeight: '400'
@@ -42,7 +48,7 @@ class NavigationTest extends Component {
                     );
                 } else {
                     return (
-                        <TouchableOpacity style={styles.button} onPress={() => {}} >
+                        <TouchableOpacity style={styles.button} onPress={() => that.clickLogo()} >
                             <Text style={styles.buttonText}>Logo</Text>
                         </TouchableOpacity>
                     );
@@ -57,7 +63,7 @@ class NavigationTest extends Component {
             }
         }
         return (
-            <Navigator.NavigationBar // TODO: test here
+            <Navigator.NavigationBar
                 style={{
                     alignItems: 'center',
                     backgroundColor: '#55ACEE',

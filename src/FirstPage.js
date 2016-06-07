@@ -20,7 +20,8 @@ class FirstPage extends Component {
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             UserName: 'MillerD',
-            dataSource: ds.cloneWithRows(['第一行', '第二行'])
+            dataSource: ds.cloneWithRows(['Row 1', 'Row 2', 'Row 3', 'Row 4', 'Row 5', 'Row 6']),
+            title: 'First Page, Click To Jump'
         }
     }
     // 点击事件
@@ -36,16 +37,26 @@ class FirstPage extends Component {
             });
         }
     }
+    changeStyle() {
+        this.setState({
+            title: this.state.title === 'First Page, Click To Jump' ? 'Continue' : 'First Page, Click To Jump'
+        });
+    }
     render() {
         return (
-             <View style={styles.container} >
-                <ListView style={{marginTop: 100, marginBottom: 200, backgroundColor: 'blue'}}
+            <View style={styles.container} >
+                <ListView style={{marginTop: 66, backgroundColor: 'transparent'}}
                     dataSource={this.state.dataSource}
                     renderRow={(rowData) => <Text style={styles.cell}>{rowData}</Text>}
                 />
-                <Text style={styles.text} onPress={this.clickToJump.bind(this)}>
-                这是第一页，点击跳转
-                </Text>
+                <View style={styles.textContainer}>
+                    <Text style={styles.text} onPress={this.clickToJump.bind(this)}>
+                        {this.state.title}
+                    </Text>
+                    <Text style={styles.text} onPress={this.changeStyle.bind(this)} >
+                        Click To Change Style
+                    </Text>
+                </View>
             </View>
         );
     }
@@ -57,21 +68,28 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#F5FCFF',
-        marginBottom: 100
+        // marginBottom: 100
+    },
+    textContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        //backgroundColor: 'antiquewhite',
+        marginBottom: 150
     },
     text: {
         alignItems: 'center',
         fontSize: 25,
         color: 'green',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 10
     },
     cell: {
         fontSize: 20,
         width: screen.width,
         height: 44,
-        backgroundColor: 'red',
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: 'lightgreen',
+        // justifyContent: 'center',
+        // alignItems: 'center',
         marginBottom: 1
     }
 });
