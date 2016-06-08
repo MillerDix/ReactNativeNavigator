@@ -110,7 +110,7 @@ class NavigationTest extends Component {
         } else {
             return (
                 <View style={styles.container} >
-                    <Image source={require('../images/motocycle.png')} />
+                    <Image source={{uri: 'http://image.jeepshoe.org/thumb/280x220/7/ec/7ec3c98c536aa802a70cf35e6c38bb03.png'}} />
                     <TouchableOpacity style={styles.button} onPress={() => this.setState({logo: '1'})} >
                         <Text style={styles.text}>Go Back</Text>
                     </TouchableOpacity>
