@@ -110,7 +110,7 @@ class NavigationTest extends Component {
         } else {
             return (
                 <View style={styles.container} >
-                    <Image source={require('../images/motocycle.png')} />
+                    <Image source={{uri: 'http://image.jeepshoe.org/thumb/280x220/7/ec/7ec3c98c536aa802a70cf35e6c38bb03.png'}} style={{width: 280, height: 220}} />
                     <TouchableOpacity style={styles.button} onPress={() => this.setState({logo: '1'})} >
                         <Text style={styles.text}>Go Back</Text>
                     </TouchableOpacity>
@@ -122,11 +122,14 @@ class NavigationTest extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: 'rgb(34, 34, 34)',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
     },
     button: {
+        borderRadius: 5,
+        width: 280,
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 2,
