@@ -50,12 +50,6 @@ class FirstPage extends Component {
                     dataSource={this.state.dataSource}
                     renderRow={(rowData) => <Text style={styles.cell}>{rowData}</Text>}
                 />
-<<<<<<< HEAD
-                <Text style={styles.text} onPress={this.clickToJump.bind(this)}>
-                  这是{this.state.change ? "第一页" : "第而页"}，点击跳转
-                  {this.nameList[0]}
-                </Text>
-=======
                 <View style={styles.textContainer}>
                     <Text style={styles.text} onPress={this.clickToJump.bind(this)}>
                         {this.state.title}
@@ -64,7 +58,6 @@ class FirstPage extends Component {
                         Click To Change Style
                     </Text>
                 </View>
->>>>>>> 30e6656e9abd437e20182a786ca320cb2f0eae6a
             </View>
         );
     }
